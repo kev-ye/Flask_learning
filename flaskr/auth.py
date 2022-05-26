@@ -31,7 +31,7 @@ def register():
         if error is None:
             try:
                 db.execute(
-                    "INSERT INTO user (yserbane, password) VALUES (?, ?)",
+                    "INSERT INTO user (username, password) VALUES (?, ?)",
                     (username, generate_password_hash(password)),
                 )
                 db.commit()
@@ -43,3 +43,6 @@ def register():
         flash(error)
 
     return render_template('auth/register.html')
+
+
+
