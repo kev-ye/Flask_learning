@@ -92,7 +92,6 @@ def logout():
 def login_required(view):
 	@functools.wraps(view)
 	def wrapped_view(**kwargs):
-		print('[debug before app request --> here', ' with kw: ', kwargs, ']')
 		if g.user is None:
 			return redirect(url_for('auth.login'))
 
