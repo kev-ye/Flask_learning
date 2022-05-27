@@ -38,7 +38,6 @@ def register():
 			except db.IntegrityError:
 				error = f"User {username} is already registered."
 			else:
-				print('debug url_for auth.login:', url_for("auth.login"))
 				return redirect(url_for("auth.login"))
 
 		flash(error)
@@ -74,7 +73,6 @@ def login():
 
 @bp.before_app_request
 def load_logged_in_user():
-	print('debug before app request --> here')
 	user_id = session.get('user_id')
 
 	if user_id is None:
@@ -94,6 +92,7 @@ def logout():
 def login_required(view):
 	@functools.wraps(view)
 	def wrapped_view(**kwargs):
+		print('[debug before app request --> here', ' with kw: ', kwargs, ']')
 		if g.user is None:
 			return redirect(url_for('auth.login'))
 
