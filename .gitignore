@@ -11,7 +11,7 @@ instance/
 htmlcov/
 
 dist/
-build/œœ
+build/
 *.egg-info/
 
 identifier.sqlite
