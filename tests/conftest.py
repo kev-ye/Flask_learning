@@ -6,9 +6,7 @@ from flaskr import create_app
 from flaskr.db import get_db, init_db
 
 with open(os.path.join(os.path.dirname(__file__), 'data.sql'), 'rb') as f:
-	print('debug: open path debug:', f'{ os.path.dirname(__file__) } + data.sql')
 	_data_sql = f.read().decode('utf8')
-	print('debug: binary file:', _data_sql)
 
 
 @pytest.fixture
@@ -47,7 +45,10 @@ class AuthActions(object):
 	def login(self, username='test', password='test'):
 		return self._client.post(
 			'/auth/login',
-			data={'username': username, 'password': password}
+			data={
+				'username': username,
+				'password': password
+			}
 		)
 
 	def logout(self):
